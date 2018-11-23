@@ -41,7 +41,7 @@ void main()
     vec3 light_result = (ambient + diffuse + specular);
     vec4 light_color = vec4(light_result, 1.0f);
 
-    color = texture(color_texture, vTexCoords); //* light_color;
+    color = texture(color_texture, vTexCoords) * light_color;
 
 
 ///отражение 
@@ -51,7 +51,7 @@ void main()
         && color_test.z <= cabin_color.z + 0.02 && color_test.z >= cabin_color.z - 0.02) {
         vec3 I = normalize(FragPos - viewPos);
         vec3 R = reflect(I, normalize(vNormal));
-        color = vec4(texture(skybox, R).rgb, 1.0);
+        color = vec4(texture(skybox, R).rgb, 1.0) * light_color;
     }
 
 }
