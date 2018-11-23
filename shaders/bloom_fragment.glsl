@@ -10,7 +10,7 @@ out vec4 fragColor;
 
 void main()
 {             
-    const float gamma = 1.4;
+    const float gamma = 1.0;
     vec3 hdrColor = texture(scene, vTexCoords).rgb;          
     vec3 bloomColor = texture(bloomBlur, vTexCoords).rgb;
     if(bloom) {
