@@ -86,7 +86,7 @@ void main()
 {   
     //float c = cnoise(FragPos);
     float color = col + 0.4;
-    vec4 tex_col = vec4(color,0.0,0.0,0.8);
+    vec4 tex_col = vec4(color,color,color,0.8);
     if (color <= 0.3 && color <= 0.3 && color <= 0.3) {
         tex_col.x += 0.5; //tex_col.y += 0.5; tex_col.z += 0.5;
         tex_col.w = 0.4;

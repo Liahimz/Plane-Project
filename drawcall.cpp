@@ -58,13 +58,17 @@ void DrawMesh(ShaderProgram &program,
 {
     program.StartUseShader();
 
-    program.SetUniform("color_texture", 0);
+    //glEnable(GL_BLEND);
+    //glBlendEquation(GL_FUNC_ADD);
+    //glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
+    program.SetUniform("color_texture", 2);
 
     program.SetUniform("view", camera.GetViewMatrix());
     program.SetUniform("viewPos", camera.pos);
     program.SetUniform("projection", projectionMatrixTransposed(camera.zoom, float(width) / float(height), 0.1f, 1000.0f));
     //отражние
-    program.SetUniform("skybox", 2);
+    program.SetUniform("skybox", 3);
 
     if (mesh->GetName() == "Aircraft_propeller") {
         const float ROTATES_RATE = 10.0;
@@ -176,4 +180,5 @@ void DrawMesh(ShaderProgram &program,
     mesh->DrawInstanced(plane_num);
 
     program.StopUseShader();
+    //glDisable(GL_BLEND);
 }

@@ -31,10 +31,10 @@ void main()
     float diff = max(dot(norm, lightDir), 0.0);
     vec3 diffuse = diff * lightColor;
 
-    float specularStrength = 2.0f;
+    float specularStrength = 3.0f;
     vec3 viewDir = normalize(viewPos - FragPos);
     vec3 reflectDir = reflect(-lightDir, norm);  
-    float spec = pow(max(dot(viewDir, reflectDir), 0.0), 64);
+    float spec = pow(max(dot(viewDir, reflectDir), 0.0), 32);
     vec3 specular = specularStrength * spec * lightColor;
 
 
@@ -44,6 +44,7 @@ void main()
     color = texture(color_texture, vTexCoords) * light_color;
 
 
+
 ///отражение 
     vec4 cabin_color = vec4(37.0/255.0, 47.0/255.0, 43.0/255.0, 1);
     if (color_test.x <= cabin_color.x + 0.02 &&  color_test.x >= cabin_color.x - 0.02 
@@ -51,7 +52,7 @@ void main()
         && color_test.z <= cabin_color.z + 0.02 && color_test.z >= cabin_color.z - 0.02) {
         vec3 I = normalize(FragPos - viewPos);
         vec3 R = reflect(I, normalize(vNormal));
-        color = vec4(texture(skybox, R).rgb, 1.0) * light_color;
+        color = vec4(texture(skybox, R).rgb, 1) * light_color;
     }
 
 }
