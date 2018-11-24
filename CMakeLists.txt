@@ -21,6 +21,8 @@ set(SOURCE_FILES
         rain_mesh.h
         rain_mesh.cpp
         PerlinNoise.hpp
+        cloud_mesh.h
+        cloud_mesh.cpp
         dependencies/include/Hydra/HydraVSGFExport.cpp
         dependencies/include/Hydra/HydraVSGFExport.h
         dependencies/include/TinyXML2/tinyxml2.cpp

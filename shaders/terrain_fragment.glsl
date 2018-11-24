@@ -3,7 +3,10 @@ in vec3 vFragPosition;
 in vec2 vTexCoords;
 in vec3 vNormal;
 
-out vec4 color;
+//out vec4 color;
+
+layout (location = 0) out vec4 color;
+layout (location = 1) out vec4 brightColor;
 
 void main()
 {
@@ -26,4 +29,5 @@ void main()
     col = mix(fog_color, col, fog_factor);
     
     color = vec4(col, 1.0f);
+    brightColor = vec4(0.0f);
 }

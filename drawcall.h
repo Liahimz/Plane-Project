@@ -5,6 +5,7 @@
 #include "mesh.h"
 
 #include "rain_mesh.h"
+#include "cloud_mesh.h"
 
 void DrawSimpleTriangle(ShaderProgram &debug_program,
                         Camera &camera,
@@ -21,6 +22,13 @@ void DrawMesh(ShaderProgram &program,
 void DrawRain(ShaderProgram &program,
     Camera &camera,
     RainMesh *mesh,
+    uint32_t width,
+    uint32_t height,
+    float deltaTime);
+
+void DrawClouds(ShaderProgram &program,
+    Camera &camera,
+    CloudMesh *mesh,
     uint32_t width,
     uint32_t height,
     float deltaTime);

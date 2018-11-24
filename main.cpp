@@ -593,6 +593,11 @@ int main(int argc, char** argv) {
     rain_shaders[GL_FRAGMENT_SHADER] = "shaders/rain_fragment.glsl";
     ShaderProgram rain_program(rain_shaders);
 
+    std::unordered_map<GLenum, std::string> cloud_Shader;
+    cloud_Shader[GL_VERTEX_SHADER] = "shaders/cloud_vertex.glsl";
+    cloud_Shader[GL_FRAGMENT_SHADER] = "shaders/cloud_fragment.glsl";
+    ShaderProgram cloud_program(cloud_Shader); //GL_CHECK_ERRORS;
+
     ///////////////////////////////////////////////////////////////////
     
     std::unordered_map<GLenum, std::string> blur_shaders;
@@ -765,9 +770,9 @@ int main(int argc, char** argv) {
     skyboxShader.SetUniform("skybox",0);
     /////////for cube maps end///////////////
 
-
+/*
     ////////for clouds//////////////////
-    std::unordered_map<GLenum, std::string> cube_Shader;
+  std::unordered_map<GLenum, std::string> cube_Shader;
   cube_Shader[GL_VERTEX_SHADER] = "shaders/cube_vertex.glsl";
   cube_Shader[GL_FRAGMENT_SHADER] = "shaders/cube_fragment.glsl";
   ShaderProgram cubeShader(cube_Shader); //GL_CHECK_ERRORS;
@@ -833,9 +838,10 @@ int main(int argc, char** argv) {
     //cubeShader.SetUniform("texture1",1);
 
 
+*/  
 /*
 
-    std::unordered_map<GLenum, std::string> cloud_Shader;
+  std::unordered_map<GLenum, std::string> cloud_Shader;
   cloud_Shader[GL_VERTEX_SHADER] = "shaders/cloud_vertex.glsl";
   cloud_Shader[GL_FRAGMENT_SHADER] = "shaders/cloud_fragment.glsl";
   ShaderProgram cloudShader(cloud_Shader); //GL_CHECK_ERRORS;
@@ -891,6 +897,8 @@ int main(int argc, char** argv) {
     /////////for cclouds end///////////////
 
     auto raindrop = CreateRaindropMesh();
+
+    auto clouds = CreateCloudMesh();
 
     int frame_counter = 0;
 
@@ -949,7 +957,6 @@ int main(int argc, char** argv) {
                 if (materials[mesh->material_id].tex_id != -1) {
 	                glActiveTexture(GL_TEXTURE2); 
 	                glBindTexture(GL_TEXTURE_2D, materials[mesh->material_id].tex_id);
-	                //отражение
 	                //glBindVertexArray(skyboxVAO);
     			        glActiveTexture(GL_TEXTURE3);
     			        glBindTexture(GL_TEXTURE_CUBE_MAP, cubemapTexture);
@@ -1067,6 +1074,9 @@ int main(int argc, char** argv) {
             cloudShader.StopUseShader();
             glDisable(GL_BLEND);
             */
+
+            DrawClouds(cloud_program, camera, clouds, WIDTH, HEIGHT, deltaTime);
+
             DrawRain(rain_program, camera, raindrop, WIDTH, HEIGHT, deltaTime);
 
             glBindFramebuffer(GL_FRAMEBUFFER, 0);

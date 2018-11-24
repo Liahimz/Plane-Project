@@ -32,20 +32,41 @@ void DrawRain(ShaderProgram &program,
     program.StopUseShader();
 }
 
+void DrawClouds(ShaderProgram &program,
+        Camera &camera,
+        CloudMesh *mesh,
+        uint32_t width,
+        uint32_t height,
+        float deltaTime) {
+
+    program.StartUseShader();
+
+    mesh->UpdateClouds(deltaTime);
+
+    glEnable(GL_BLEND);
+    glBlendEquation(GL_FUNC_ADD);
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
+    program.SetUniform("view", camera.GetViewMatrix());
+    program.SetUniform("projection", projectionMatrixTransposed(camera.zoom, float(width) / float(height), 0.1f, 1000.0f));
+
+    mesh->DrawInstanced();
+
+    glDisable(GL_BLEND);
+
+    program.StopUseShader();
+}
+
 void do_a_barrel_roll()
 {
     if (PLANE_BARREL_ROLLING == false) {
         PLANE_BARREL_ROLLING = true;
 
         for (int i = 0; i < plane_num; ++i) {
-            rotates_lates[i] = 0.0;//(0.1 + (float(rand()) / RAND_MAX) * 0.7);
-            rotates_speed[i] = 3.0;//(0.8 + (float(rand()) / RAND_MAX) * 0.2);
+            rotates_speed[i] = 3.0;
 
-            planes_rotate_angles[i] = -rotates_lates[i];
             is_rotates_completed[i] = false;
         }
-
-        //std::cout << "do a roll" << std::endl;
     }
 }
 
@@ -67,7 +88,6 @@ void DrawMesh(ShaderProgram &program,
     program.SetUniform("view", camera.GetViewMatrix());
     program.SetUniform("viewPos", camera.pos);
     program.SetUniform("projection", projectionMatrixTransposed(camera.zoom, float(width) / float(height), 0.1f, 1000.0f));
-    //отражние
     program.SetUniform("skybox", 3);
 
     if (mesh->GetName() == "Aircraft_propeller") {
@@ -149,16 +169,8 @@ void DrawMesh(ShaderProgram &program,
 
                 planes_rotate_angles[j] = 0.0;
                 is_rotates_completed[j] = true;
-
-                bool all_ends = true;
-                for (int k = 0; k < plane_num; ++k) {
-                    if (!is_rotates_completed[k])
-                        all_ends = false;
-                }
-
-                if (all_ends) {
-                    PLANE_BARREL_ROLLING = false;
-                }
+                PLANE_BARREL_ROLLING = false;
+                
             }
 
             if (planes_rotate_angles[j] > 0.0) {
