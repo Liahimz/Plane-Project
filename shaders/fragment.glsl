@@ -6,9 +6,9 @@ in vec3 FragPos;
 //out vec4 color;
 
 
-//uniform vec3 lightPos; 
+uniform vec3 lightPos; 
 uniform vec3 viewPos;
-//uniform vec3 lightColor;
+uniform vec3 lightColor;
 
 uniform sampler2D color_texture;
 uniform samplerCube skybox;
@@ -19,8 +19,8 @@ layout (location = 1) out vec4 brightColor;
 void main()
 {
 	
-	vec3 lightPos = vec3(1.0f,10.4f,-15.0f);
-	vec3 lightColor = vec3(1.0f,1.0f,1.0f);
+	//vec3 lightPos = vec3(1.0f,10.4f,-15.0f);
+	//vec3 lightColor = vec3(1.0f,1.0f,1.0f);
 	//vec3 viewPos = vec3(1.0f,2.0f,2.0f);
 
     vec4 color_test = texture(color_texture, vTexCoords);

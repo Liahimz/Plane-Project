@@ -4,17 +4,13 @@
 #include "LiteMath.h"
 
 #include <vector>
-#include <cstring>
+#include <string>
 
-using LiteMath::float4x4;
-using LiteMath::float3;
-using LiteMath::float4;
-using LiteMath::rotate_Y_4x4;
-using LiteMath::mul;
+using namespace LiteMath;
+using namespace std;
 
-using std::vector;
-using std::string;
-
+const int max_cloud_parts = 7000;
+const int max_clouds = 120;
 
 class CloudMesh {
 public:
@@ -22,9 +18,9 @@ public:
     uint32_t material_id;
 
     CloudMesh(const vector<float> &positions,
-             const vector<uint32_t> &indices,
-             size_t mat_id,
-             string n);
+              const vector<uint32_t> &indices,
+              size_t mat_id,
+              string n);
 
     string GetName();
 
@@ -39,48 +35,20 @@ public:
 protected:
     string name;
     GLuint vboVertices, vboIndices, vboOffset, vboColor, vao;
-    size_t ind_num;
+    size_t ind_num, instances_num;
 };
 
-
-// ========== CLOUD PART ===============
 CloudMesh* CreateCloudMesh();
 
-
-static void reset_cloud(int index);
-static void init_clouds();
-
-
-static const int MAX_CLOUD_PARTICLES = 4000;
-static const int MAX_CLOUDS = 80;
-
-static const int MIN_HEIGHT = 200; // 200
-static const int MAX_HEIGHT = 300; // 300
-
-static const int DRAW_RANGE = 600; // 2000
-
-static const int MIN_LAYERS = 2;
-static const int MAX_LAYERS = 6;
-
-static const float zoom = 2.0;
+int InitClouds();
 
 
 typedef struct Cloud {
-    int particles_count;
-
-    // Position/direction
-    float3 position;
-    float3 particles_position[MAX_CLOUD_PARTICLES];
-    float rotate;
-
-    // Velocity
-    float velocity;
+    int cloud_part_num;
+    float3 position[max_cloud_parts];
 } Cloud;
 
+static Cloud clouds[max_clouds];
+static float4x4 cloud_part_offset[max_cloud_parts * max_clouds];
+static float colors[max_cloud_parts * max_clouds];
 
-static int TOTAL_PARTICLES = 0;
-
-static Cloud clouds[MAX_CLOUDS];
-static float4x4 cloud_particles_offset[MAX_CLOUD_PARTICLES * MAX_CLOUDS];
-static float4 colors[MAX_CLOUD_PARTICLES * MAX_CLOUDS];
-// ====================================

@@ -41,5 +41,4 @@ static bool PLANE_BARREL_ROLLING = false;
 
 static float planes_rotate_angles[plane_num] = {0.0, };
 static float rotates_speed[plane_num] = {0.0, };
-static float rotates_lates[plane_num] = {0.0, };
 static bool  is_rotates_completed[plane_num] = {false, };

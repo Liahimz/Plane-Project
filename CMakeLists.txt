@@ -20,7 +20,7 @@ set(SOURCE_FILES
         stb_image.h
         rain_mesh.h
         rain_mesh.cpp
-        PerlinNoise.hpp
+        perlin_noise.h
         cloud_mesh.h
         cloud_mesh.cpp
         dependencies/include/Hydra/HydraVSGFExport.cpp
