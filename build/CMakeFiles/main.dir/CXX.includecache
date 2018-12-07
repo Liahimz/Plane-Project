@@ -1,0 +1,340 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+../dependencies/include/GLAD/KHR/khrplatform.h
+stdint.h
+-
+inttypes.h
+-
+stdint.h
+-
+
+../dependencies/include/GLAD/glad/glad.h
+windows.h
+-
+stddef.h
+-
+KHR/khrplatform.h
+-
+inttypes.h
+-
+inttypes.h
+-
+inttypes.h
+-
+stdint.h
+-
+stdint.h
+-
+inttypes.h
+-
+
+/Users/mihail/Desktop/OpenGL/Plane Project/Camera.cpp
+Camera.h
+/Users/mihail/Desktop/OpenGL/Plane Project/Camera.h
+
+/Users/mihail/Desktop/OpenGL/Plane Project/Camera.h
+common.h
+/Users/mihail/Desktop/OpenGL/Plane Project/common.h
+LiteMath.h
+/Users/mihail/Desktop/OpenGL/Plane Project/LiteMath.h
+
+/Users/mihail/Desktop/OpenGL/Plane Project/ImportSceneObject.cpp
+ImportSceneObject.h
+/Users/mihail/Desktop/OpenGL/Plane Project/ImportSceneObject.h
+functional
+-
+iostream
+-
+sstream
+-
+
+/Users/mihail/Desktop/OpenGL/Plane Project/ImportSceneObject.h
+dependencies/include/Hydra/HydraVSGFExport.h
+/Users/mihail/Desktop/OpenGL/Plane Project/dependencies/include/Hydra/HydraVSGFExport.h
+dependencies/include/TinyXML2/tinyxml2.h
+/Users/mihail/Desktop/OpenGL/Plane Project/dependencies/include/TinyXML2/tinyxml2.h
+mesh.h
+/Users/mihail/Desktop/OpenGL/Plane Project/mesh.h
+string
+-
+memory
+-
+map
+-
+
+/Users/mihail/Desktop/OpenGL/Plane Project/LiteMath.h
+math.h
+-
+stdlib.h
+-
+memory
+-
+vector
+-
+
+/Users/mihail/Desktop/OpenGL/Plane Project/ShaderProgram.cpp
+ShaderProgram.h
+/Users/mihail/Desktop/OpenGL/Plane Project/ShaderProgram.h
+sstream
+-
+
+/Users/mihail/Desktop/OpenGL/Plane Project/ShaderProgram.h
+unordered_map
+-
+common.h
+/Users/mihail/Desktop/OpenGL/Plane Project/common.h
+LiteMath.h
+/Users/mihail/Desktop/OpenGL/Plane Project/LiteMath.h
+
+/Users/mihail/Desktop/OpenGL/Plane Project/cloud_mesh.cpp
+cloud_mesh.h
+/Users/mihail/Desktop/OpenGL/Plane Project/cloud_mesh.h
+perlin_noise.h
+/Users/mihail/Desktop/OpenGL/Plane Project/perlin_noise.h
+stdio.h
+-
+
+/Users/mihail/Desktop/OpenGL/Plane Project/cloud_mesh.h
+common.h
+/Users/mihail/Desktop/OpenGL/Plane Project/common.h
+LiteMath.h
+/Users/mihail/Desktop/OpenGL/Plane Project/LiteMath.h
+vector
+-
+string
+-
+
+/Users/mihail/Desktop/OpenGL/Plane Project/common.h
+iostream
+-
+fstream
+-
+string
+-
+glad/glad.h
+-
+
+/Users/mihail/Desktop/OpenGL/Plane Project/dependencies/include/Hydra/HydraVSGFExport.cpp
+HydraVSGFExport.h
+/Users/mihail/Desktop/OpenGL/Plane Project/dependencies/include/Hydra/HydraVSGFExport.h
+fstream
+-
+sstream
+-
+
+/Users/mihail/Desktop/OpenGL/Plane Project/dependencies/include/Hydra/HydraVSGFExport.h
+vector
+-
+string
+-
+map
+-
+cstring
+-
+cstdint
+-
+
+/Users/mihail/Desktop/OpenGL/Plane Project/dependencies/include/TinyXML2/tinyxml2.cpp
+tinyxml2.h
+/Users/mihail/Desktop/OpenGL/Plane Project/dependencies/include/TinyXML2/tinyxml2.h
+new
+-
+stddef.h
+-
+stdarg.h
+-
+cstddef
+-
+cstdarg
+-
+
+/Users/mihail/Desktop/OpenGL/Plane Project/dependencies/include/TinyXML2/tinyxml2.h
+ctype.h
+-
+limits.h
+-
+stdio.h
+-
+stdlib.h
+-
+string.h
+-
+stddef.h
+-
+cctype
+-
+climits
+-
+cstdio
+-
+cstdlib
+-
+cstring
+-
+stdint.h
+-
+android/log.h
+-
+assert.h
+-
+
+/Users/mihail/Desktop/OpenGL/Plane Project/drawcall.cpp
+drawcall.h
+/Users/mihail/Desktop/OpenGL/Plane Project/drawcall.h
+iostream
+-
+sstream
+-
+string
+-
+stdio.h
+-
+
+/Users/mihail/Desktop/OpenGL/Plane Project/drawcall.h
+ShaderProgram.h
+/Users/mihail/Desktop/OpenGL/Plane Project/ShaderProgram.h
+Camera.h
+/Users/mihail/Desktop/OpenGL/Plane Project/Camera.h
+mesh.h
+/Users/mihail/Desktop/OpenGL/Plane Project/mesh.h
+rain_mesh.h
+/Users/mihail/Desktop/OpenGL/Plane Project/rain_mesh.h
+cloud_mesh.h
+/Users/mihail/Desktop/OpenGL/Plane Project/cloud_mesh.h
+
+/Users/mihail/Desktop/OpenGL/Plane Project/main.cpp
+common.h
+/Users/mihail/Desktop/OpenGL/Plane Project/common.h
+ShaderProgram.h
+/Users/mihail/Desktop/OpenGL/Plane Project/ShaderProgram.h
+Camera.h
+/Users/mihail/Desktop/OpenGL/Plane Project/Camera.h
+drawcall.h
+/Users/mihail/Desktop/OpenGL/Plane Project/drawcall.h
+perlin_noise.h
+/Users/mihail/Desktop/OpenGL/Plane Project/perlin_noise.h
+stb_image.h
+/Users/mihail/Desktop/OpenGL/Plane Project/stb_image.h
+ImportSceneObject.h
+/Users/mihail/Desktop/OpenGL/Plane Project/ImportSceneObject.h
+GLFW/glfw3.h
+-
+random
+-
+map
+-
+iostream
+-
+sstream
+-
+string
+-
+stdio.h
+-
+
+/Users/mihail/Desktop/OpenGL/Plane Project/mesh.cpp
+mesh.h
+/Users/mihail/Desktop/OpenGL/Plane Project/mesh.h
+
+/Users/mihail/Desktop/OpenGL/Plane Project/mesh.h
+common.h
+/Users/mihail/Desktop/OpenGL/Plane Project/common.h
+LiteMath.h
+/Users/mihail/Desktop/OpenGL/Plane Project/LiteMath.h
+vector
+-
+string
+-
+
+/Users/mihail/Desktop/OpenGL/Plane Project/perlin_noise.h
+
+/Users/mihail/Desktop/OpenGL/Plane Project/rain_mesh.cpp
+rain_mesh.h
+/Users/mihail/Desktop/OpenGL/Plane Project/rain_mesh.h
+
+/Users/mihail/Desktop/OpenGL/Plane Project/rain_mesh.h
+common.h
+/Users/mihail/Desktop/OpenGL/Plane Project/common.h
+LiteMath.h
+/Users/mihail/Desktop/OpenGL/Plane Project/LiteMath.h
+vector
+-
+string
+-
+
+/Users/mihail/Desktop/OpenGL/Plane Project/stb_image.h
+stb_image.h
+/Users/mihail/Desktop/OpenGL/Plane Project/stb_image.h
+stdio.h
+-
+stdarg.h
+-
+stddef.h
+-
+stdlib.h
+-
+string.h
+-
+limits.h
+-
+math.h
+-
+stdio.h
+-
+assert.h
+-
+stdint.h
+-
+emmintrin.h
+-
+intrin.h
+-
+arm_neon.h
+-
+
+/usr/local/include/GLFW/glfw3.h
+stddef.h
+-
+stdint.h
+-
+OpenGL/gl3.h
+-
+OpenGL/gl3ext.h
+-
+OpenGL/gl.h
+-
+OpenGL/glu.h
+-
+GL/glcorearb.h
+-
+GLES/gl.h
+-
+GLES/glext.h
+-
+GLES2/gl2.h
+-
+GLES2/gl2ext.h
+-
+GLES3/gl3.h
+-
+GLES2/gl2ext.h
+-
+GLES3/gl31.h
+-
+GLES2/gl2ext.h
+-
+vulkan/vulkan.h
+-
+GL/gl.h
+-
+GL/glext.h
+-
+GL/glu.h
+-
+

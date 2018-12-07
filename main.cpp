@@ -30,6 +30,7 @@ static bool firstMouse = true;
 static bool g_captureMouse         = true;  // Мышка захвачена нашим приложением или нет?
 static bool g_capturedMouseJustNow = false;
 
+
 GLfloat deltaTime = 0.0f;
 GLfloat lastFrame = 0.0f;
 
@@ -68,7 +69,6 @@ void OnKeyboardPressed(GLFWwindow* window, int key, int scancode, int action, in
     break;
   case GLFW_KEY_B:
     do_a_barrel_roll();
-    break;
 	default:
 		if (action == GLFW_PRESS)
 			keys[key] = true;
@@ -580,23 +580,7 @@ int main(int argc, char** argv) {
     unsigned int attachments[2] = { GL_COLOR_ATTACHMENT0, GL_COLOR_ATTACHMENT1 };
     glDrawBuffers(2, attachments);
     
-    /*
-    /////
-    unsigned int texture_hdr;
-    glGenTextures(1, &texture_hdr);
-    glBindTexture(GL_TEXTURE_2D, texture_hdr); //GL_CHECK_ERRORS;
-    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, WIDTH, HEIGHT, 0, GL_RGB, GL_UNSIGNED_BYTE, NULL);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-    glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, texture_hdr, 0);
-    
-    unsigned int rbo;
-    glGenRenderbuffers(1, &rbo); //GL_CHECK_ERRORS;
-    glBindRenderbuffer(GL_RENDERBUFFER, rbo); //GL_CHECK_ERRORS;
-    glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH24_STENCIL8, WIDTH, HEIGHT); // use a single renderbuffer object for both a depth AND stencil buffer.
-    glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_STENCIL_ATTACHMENT, GL_RENDERBUFFER, rbo); //GL_CHECK_ERRORS;
-    */
-    //////
+   
     glBindFramebuffer(GL_FRAMEBUFFER, 0); //GL_CHECK_ERRORS;
 
     
@@ -709,133 +693,7 @@ int main(int argc, char** argv) {
     unsigned int cubemapTexture = loadCubemap(faces);
 
     skyboxShader.SetUniform("skybox",0);
-    /////////for cube maps end///////////////
 
-/*
-    ////////for clouds//////////////////
-  std::unordered_map<GLenum, std::string> cube_Shader;
-  cube_Shader[GL_VERTEX_SHADER] = "shaders/cube_vertex.glsl";
-  cube_Shader[GL_FRAGMENT_SHADER] = "shaders/cube_fragment.glsl";
-  ShaderProgram cubeShader(cube_Shader); //GL_CHECK_ERRORS;
-
-    float cubeVertices[] = {
-        // positions          // texture Coords
-        -0.5f, -0.5f, -0.5f,  0.0f, 0.0f,
-         0.5f, -0.5f, -0.5f,  1.0f, 0.0f,
-         0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
-         0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
-        -0.5f,  0.5f, -0.5f,  0.0f, 1.0f,
-        -0.5f, -0.5f, -0.5f,  0.0f, 0.0f,
-
-        -0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
-         0.5f, -0.5f,  0.5f,  1.0f, 0.0f,
-         0.5f,  0.5f,  0.5f,  1.0f, 1.0f,
-         0.5f,  0.5f,  0.5f,  1.0f, 1.0f,
-        -0.5f,  0.5f,  0.5f,  0.0f, 1.0f,
-        -0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
-
-        -0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
-        -0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
-        -0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
-        -0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
-        -0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
-        -0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
-
-         0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
-         0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
-         0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
-         0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
-         0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
-         0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
-
-        -0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
-         0.5f, -0.5f, -0.5f,  1.0f, 1.0f,
-         0.5f, -0.5f,  0.5f,  1.0f, 0.0f,
-         0.5f, -0.5f,  0.5f,  1.0f, 0.0f,
-        -0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
-        -0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
-
-        -0.5f,  0.5f, -0.5f,  0.0f, 1.0f,
-         0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
-         0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
-         0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
-        -0.5f,  0.5f,  0.5f,  0.0f, 0.0f,
-        -0.5f,  0.5f, -0.5f,  0.0f, 1.0f
-    };
-
-    unsigned int cubeVAO, cubeVBO;
-    glGenVertexArrays(1, &cubeVAO);
-    glGenBuffers(1, &cubeVBO);
-    glBindVertexArray(cubeVAO);
-    glBindBuffer(GL_ARRAY_BUFFER, cubeVBO);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(cubeVertices), &cubeVertices, GL_STATIC_DRAW);
-    glEnableVertexAttribArray(0);
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)0);
-    glEnableVertexAttribArray(1);
-    glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)(3 * sizeof(float)));
-
-    //unsigned int cubeTexture = loadTexture("textures/cloudtex/cl_tex.jpg");
-
-    //cubeShader.SetUniform("texture1",1);
-
-*/
- 
-/*
-
-  std::unordered_map<GLenum, std::string> cloud_Shader;
-  cloud_Shader[GL_VERTEX_SHADER] = "shaders/cloud_vertex.glsl";
-  cloud_Shader[GL_FRAGMENT_SHADER] = "shaders/cloud_fragment.glsl";
-  ShaderProgram cloudShader(cloud_Shader); //GL_CHECK_ERRORS;
-
-    float cloudVertices[] = {
-      50.5f,  0.0f, 50.5f,  // Верхний правый угол
-      50.5f, -0.0f, -50.5f,  // Нижний правый угол
-      -50.5f, -0.0f, -50.5f,  // Нижний левый угол
-      -50.5f,  0.0f, 50.5f
-    };
-
-    GLuint indices[] = {  // Помните, что мы начинаем с 0!
-      0, 1, 3,   // Первый треугольник
-      1, 2, 3    // Второй треугольник
-    };
-
-    // skybox VAO
-    GLuint cloudVBO, cloudVAO, cloudEBO;
-    glGenVertexArrays(1, &cloudVAO);
-    glGenBuffers(1, &cloudVBO);
-    glGenBuffers(1, &cloudEBO);
-    // Bind the Vertex Array Object first, then bind and set vertex buffer(s) and attribute pointer(s).
-    glBindVertexArray(cloudVAO);
-
-    glBindBuffer(GL_ARRAY_BUFFER, cloudVBO);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(cloudVertices), cloudVertices, GL_STATIC_DRAW);
-
-    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, cloudEBO);
-    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
-
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(GLfloat), (GLvoid*)0);
-    glEnableVertexAttribArray(0);
-
-    glBindBuffer(GL_ARRAY_BUFFER, 0); // Note that this is allowed, the call to glVertexAttribPointer registered VBO as the currently bound vertex buffer object so afterwards we can safely unbind
-
-    glBindVertexArray(0);
-*/
-
-/*
-    unsigned int cubes_num = 12;
-
-    float4x4 offsets[cubes_num];
-    int j = 0;
-    float offset = 7.0f;
-    for(int i = -5; i <= 7; i += 1) {
-        float3 translation;
-        translation.x = abs((float)i *  offset / 10);
-        //translation.z = (float)i * offset / 10;
-        //translation.y = abs((float)i * offset);
-        offsets[j++] = transpose(translate4x4(translation));
-    }
-*/
-    /////////for cclouds end///////////////
 
     auto raindrop = CreateRaindropMesh();
 
@@ -933,81 +791,6 @@ int main(int argc, char** argv) {
 
             float voxel_size = 0.1;
               
-            /*
-            //srand(time(NULL));
-            for (int i = 0; i < 20; i++) {
-              for (int j = 0; j < 20; j++) {
-                for (int z = 0; z < 4; z++) {
-                    float4x4 model_cube = transpose(translate4x4(float3(0+i*voxel_size, 10+z*voxel_size, 0+j*voxel_size)));
-
-                    float4x4 matrix = transpose(scale4x4(float3(voxel_size,voxel_size,voxel_size)));
-
-                    model_cube = mul(matrix,model_cube);
-
-                    float col = (PerlinNoise_2D(i,j,0.3,15.) + PerlinNoise_2D(i,z,1.0,15.) + PerlinNoise_2D(j,z,1.0,15.))/3 + 0.3;
-                    //auto NoiseObj = siv::PerlinNoise_2D();
-
-                    //float col = NoiseObj.noise((double)i,(double)j,(double)z);
-                    //printf("%f\n",col);
-
-                    if (col <= 0.1)
-                      continue;
-
-                    cubeShader.StartUseShader();
-                    glEnable(GL_BLEND);
-                    glBlendEquation(GL_FUNC_ADD);
-                    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-
-                    cubeShader.SetUniform("model", model_cube);
-                    cubeShader.SetUniform("view", view);
-                    cubeShader.SetUniform("projection", projection);
-                    cubeShader.SetUniform("col",col);
-                    // cubes
-                    glBindVertexArray(cubeVAO);
-                    //glActiveTexture(GL_TEXTURE0);
-                    //glBindTexture(GL_TEXTURE_2D, cubeTexture);
-                    glDrawArrays(GL_TRIANGLES, 0, 36);
-                    glBindVertexArray(0);
-
-                    cubeShader.StopUseShader();
-                    glDisable(GL_BLEND);
-                  }
-                }
-            }
-            */
-
-            /* 2d cloud_quad
-            float4x4 model_cloud = transpose(translate4x4(float3(0, 250, 0)));
-
-            cloudShader.StartUseShader();
-            glEnable(GL_BLEND);
-            glBlendEquation(GL_FUNC_ADD);
-            glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-
-            
-            for(unsigned int i = 0; i < cubes_num; i++) {
-		        std::stringstream ss;
-		        string index;
-		        ss << i; 
-		        index = ss.str();
-		        cloudShader.SetUniform(("offsets[" + index + "]").c_str(), offsets[i]);
-			       
-            cloudShader.SetUniform("view", view);
-            cloudShader.SetUniform("projection", projection);
-            cloudShader.SetUniform("model", model_cloud);
-
-            glBindVertexArray(cloudVAO);
-            glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
-            glBindVertexArray(0);
-            
-            
-            glBindVertexArray(cloudVAO);
-            glDrawArrays(GL_TRIANGLES, 0, 36);
-            glBindVertexArray(0); 
-
-            cloudShader.StopUseShader();
-            glDisable(GL_BLEND);
-            */
 
             DrawClouds(cloud_program, camera, clouds, WIDTH, HEIGHT, deltaTime);
 

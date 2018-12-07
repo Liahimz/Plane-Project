@@ -9,8 +9,8 @@
 using namespace LiteMath;
 using namespace std;
 
-const int max_cloud_parts = 7000;
-const int max_clouds = 120;
+const int max_cloud_parts = 4000;
+const int max_clouds = 80;
 
 class CloudMesh {
 public:

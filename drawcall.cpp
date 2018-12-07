@@ -95,7 +95,6 @@ void DrawMesh(ShaderProgram &program,
     if (mesh->GetName() == "Aircraft_propeller") {
         const float ROTATES_RATE = 10.0;
         mesh->model = mul(rotate_X_4x4(deltaTime * ROTATES_RATE), mesh->model);
-        program.SetUniform("lightColor", float3(1.0f,0.0f,0.0f));
     }
     program.SetUniform("model", mesh->model);
 

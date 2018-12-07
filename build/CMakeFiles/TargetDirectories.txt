@@ -1,0 +1,3 @@
+/Users/mihail/Desktop/OpenGL/Plane Project/build/CMakeFiles/rebuild_cache.dir
+/Users/mihail/Desktop/OpenGL/Plane Project/build/CMakeFiles/edit_cache.dir
+/Users/mihail/Desktop/OpenGL/Plane Project/build/CMakeFiles/main.dir
