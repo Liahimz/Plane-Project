@@ -1,4 +1,4 @@
-# Task2
+# Plane
 instalation guide : 
 cd build  
 cmake ..
